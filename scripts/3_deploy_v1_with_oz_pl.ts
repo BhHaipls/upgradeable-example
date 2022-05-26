@@ -14,7 +14,7 @@ async function main() {
   let implAddress = await upgrades.erc1967.getImplementationAddress(
     instance.address,
   );
-  let proxyAdmin = await upgrades.erc1967.getImplementationAddress(
+  let proxyAdmin = await upgrades.erc1967.getAdminAddress(
     instance.address,
   );
 
