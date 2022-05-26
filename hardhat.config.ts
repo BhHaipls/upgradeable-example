@@ -3,6 +3,8 @@ import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-truffle5';
 import '@nomiclabs/hardhat-web3';
 import '@nomiclabs/hardhat-waffle';
+import '@nomiclabs/hardhat-etherscan';
+import '@openzeppelin/hardhat-upgrades';
 
 require('hardhat-gas-reporter');
 
@@ -34,8 +36,8 @@ module.exports = {
       blockGasLimit: 10000000,
     },
     rinkeby: {
-      url: `wss://rinkeby.infura.io/ws/v3/${INFURA_KEY}`,
-      accounts: [`0x${PRIVATE_KEY}`],
+      url: `https://rinkeby.infura.io/v3/${INFURA_KEY}`,
+      accounts: [`0x${PRIVATE_KEY}`]
     },
   },
   gasReporter: {
@@ -43,12 +45,8 @@ module.exports = {
     outputFile: 'gas-report.txt',
   },
   etherscan: {
-    // Your API key for Etherscan
-    // Obtain one at https://etherscan.io/
-    apiKey: `${ETHERSCAN_API_KEY}`,
+    apiKey: {
+      rinkeby: `${ETHERSCAN_API_KEY}`,
+    },
   },
 };
-
-require('solidity-coverage');
-module.exports.networks.hardhat.initialBaseFeePerGas = 0;
-
