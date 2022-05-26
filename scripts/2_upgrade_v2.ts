@@ -8,11 +8,11 @@ async function main() {
 
   const ProxyAdminFactory = await hre.ethers.getContractFactory('ProxyAdmin');
 
-  const proxyAdmin = await ProxyAdminFactory.attach('proxy_admin_address');
+  const proxyAdmin = await ProxyAdminFactory.attach('proxyAdmin');
 
   console.log('proxyAdmin', proxyAdmin.address);
 
-  await proxyAdmin.upgradeTo('proxy', boxV2Implementation.address);
+  await proxyAdmin.upgrade('proxy', boxV2Implementation.address);
 
   await hre.run('verify:verify', {
     address: boxV2Implementation.address,
